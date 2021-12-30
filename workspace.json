@@ -2,6 +2,9 @@
   "version": 2,
   "projects": {
     "accounts": "apps/accounts",
-    "accounts-e2e": "apps/accounts-e2e"
+    "accounts-e2e": "apps/accounts-e2e",
+    "shop": "apps/shop",
+    "shop-e2e": "apps/shop-e2e",
+    "ui": "libs/ui"
   }
 }
