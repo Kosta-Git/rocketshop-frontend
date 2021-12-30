@@ -1,6 +1,8 @@
 
 
-# RocketshopMonorepo
+# Rocketshop Monorepo
+
+Contains rocketshop `shop` and `accounts` frontend
 
 This project was generated using [Nx](https://nx.dev).
 
