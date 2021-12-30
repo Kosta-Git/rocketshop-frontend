@@ -1,5 +1,5 @@
+import classNames from "classnames";
 import { PropsWithChildren } from "react";
-import "./button.module.css";
 
 interface ButtonProps {
     disabled?: boolean;
@@ -10,7 +10,17 @@ interface ButtonProps {
 
 export const Button = (props: PropsWithChildren<ButtonProps>) => {
     const {disabled = false, className = "", type = "button"} = props;
-    const classes = `btn ${disabled ? "btn-disabled" : "btn-enabled"} ${className}`.trim();
+
+    const classes = classNames(
+      "btn",
+      {
+        "btn-disabled": disabled
+      },
+      {
+        "btn-enabled": !disabled
+      },
+      className.split(" ")
+    )
 
     return (
         <button type={type} disabled={disabled} className={classes} onClick={props.onClick}>

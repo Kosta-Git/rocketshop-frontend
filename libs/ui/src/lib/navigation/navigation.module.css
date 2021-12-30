@@ -1,7 +1,0 @@
-.sidebar {
-    @apply w-64 h-screen text-white bg-gray-900 absolute md:relative inset-y-0 left-0 transform transition duration-200 ease-in-out
-}
-
-.sidebar-close {
-    @apply md:translate-x-0 -translate-x-full
-}

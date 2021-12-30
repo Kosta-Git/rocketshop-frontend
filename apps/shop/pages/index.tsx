@@ -1,7 +1,7 @@
 export function Index() {
   return (
     <div className="bg-gray-50">
-      Hello shop
+      Hello from dashboard
     </div>
   );
 }

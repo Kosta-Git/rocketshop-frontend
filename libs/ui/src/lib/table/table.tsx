@@ -1,6 +1,5 @@
 import { Column, usePagination, useSortBy, useTable } from "react-table";
 import { RiSortAsc, RiSortDesc } from "react-icons/ri";
-import "./table.module.css";
 import { useEffect } from "react";
 import { TableControls } from './table-controls';
 

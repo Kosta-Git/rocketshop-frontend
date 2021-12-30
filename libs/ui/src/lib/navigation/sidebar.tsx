@@ -1,12 +1,14 @@
-import { PropsWithChildren, useState } from "react";
-import { RiRocket2Fill, RiCloseCircleFill, RiMenuFill } from "react-icons/ri";
-import "./navigation.module.css";
+import classNames from 'classnames';
+import { PropsWithChildren, useState } from 'react';
+import { RiRocket2Fill, RiCloseCircleFill, RiMenuFill } from 'react-icons/ri';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface SidebarProps {};
+interface SidebarProps {}
 
 export const Sidebar = (props: PropsWithChildren<SidebarProps>) => {
   const [expanded, setExpanded] = useState(false);
+
+  const sidebarClasses = classNames( "sidebar", { "sidebar-close": !expanded } );
 
   return (
     <>
@@ -26,7 +28,7 @@ export const Sidebar = (props: PropsWithChildren<SidebarProps>) => {
           )}
         </button>
       </div>
-      <div className={expanded ? "sidebar" : "sidebar sidebar-close"}>
+      <div className={sidebarClasses}>
         <div className="px-6 pt-8">
           <span className="bg-blue-500 p-2 rounded-md flex items-center justify-center">
             <RiRocket2Fill className="w-8 h-8" />

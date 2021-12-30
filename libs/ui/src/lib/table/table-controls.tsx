@@ -1,4 +1,6 @@
-import { Button, OptionInput, SelectInput } from "@rocketshop-monorepo/ui";
+import { Button } from "../button/button";
+import { OptionInput } from "../forms/option-input";
+import { SelectInput } from "../forms/select-input";
 
 interface TableControlProps {
   gotoPage: (page: number) => void;
