@@ -1,6 +1,6 @@
 import { UiNodeAnchorAttributes } from '@ory/kratos-client'
 import { UiNode } from '@ory/kratos-client'
-import { Button } from '@ory/themes'
+import { Button } from '@rocketshop-monorepo/ui'
 
 interface Props {
   node: UiNode

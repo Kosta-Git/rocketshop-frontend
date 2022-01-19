@@ -1,16 +1,10 @@
 import { UiNode, UiNodeTextAttributes } from '@ory/kratos-client';
 import { UiText } from '@ory/kratos-client';
-import { CodeBox, P } from '@ory/themes';
-import styled from 'styled-components';
 
 interface Props {
   node: UiNode;
   attributes: UiNodeTextAttributes;
 }
-
-const ScrollableCodeBox = styled(CodeBox)`
-  overflow-x: auto;
-`;
 
 const Content = ({ node, attributes }: Props) => {
   switch (attributes.text.id) {
@@ -40,7 +34,7 @@ const Content = ({ node, attributes }: Props) => {
 
   return (
     <div data-testid={`node/text/${attributes.id}/text`}>
-      <ScrollableCodeBox code={attributes.text.text} />
+      <p>{attributes.text.text}</p>
     </div>
   );
 };
@@ -48,9 +42,9 @@ const Content = ({ node, attributes }: Props) => {
 export const NodeText = ({ node, attributes }: Props) => {
   return (
     <>
-      <P data-testid={`node/text/${attributes.id}/label`}>
+      <p data-testid={`node/text/${attributes.id}/label`}>
         {node.meta?.label?.text}
-      </P>
+      </p>
       <Content node={node} attributes={attributes} />
     </>
   );

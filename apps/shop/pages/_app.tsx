@@ -1,11 +1,11 @@
 import { Sidebar, SidebarLink } from '@rocketshop-monorepo/ui';
 import { AppProps } from 'next/app';
 import {
-  RiCouponFill,
-  RiDashboardFill,
-  RiAdminFill,
-  RiSettings2Fill,
-} from 'react-icons/ri';
+  HomeIcon,
+  KeyIcon,
+  ReceiptTaxIcon,
+  CogIcon,
+} from '@heroicons/react/outline';
 import Head from 'next/head';
 import { Provider } from 'react-redux';
 import { store } from './../redux/store';
@@ -17,23 +17,28 @@ function CustomApp({ Component, pageProps }: AppProps) {
       <Head>
         <title>RocketShop</title>
       </Head>
-      <main id="app" className="app md:flex min-h-screen relative">
-        <Sidebar>
-          <SidebarLink link={'/'} icon={RiDashboardFill} text={'Dashboard'} />
-          <SidebarLink link={'/admin'} icon={RiAdminFill} text={'Admin'} />
-          <SidebarLink link={'/orders'} icon={RiCouponFill} text={'Orders'} />
+      <Sidebar
+        links={[
+          <SidebarLink key={0} link={'/'} icon={HomeIcon} text={'Dashboard'} />,
+          <SidebarLink key={1} link={'/admin'} icon={KeyIcon} text={'Admin'} />,
           <SidebarLink
+            key={2}
+            link={'/orders'}
+            icon={ReceiptTaxIcon}
+            text={'Orders'}
+          />,
+          <SidebarLink
+            key={3}
             link={'/settings'}
-            icon={RiSettings2Fill}
+            icon={CogIcon}
             text={'Settings'}
-          />
-        </Sidebar>
-        <div className="flex-1">
-          <Provider store={store}>
-            <Component {...pageProps} />
-          </Provider>
-        </div>
-      </main>
+          />,
+        ]}
+      >
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
+      </Sidebar>
     </>
   );
 }

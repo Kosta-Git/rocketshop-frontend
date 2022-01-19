@@ -36,7 +36,7 @@ function SettingsCard({
     return null;
   }
 
-  return <Card>{children}</Card>;
+  return <Card className="m-4 p-4">{children}</Card>;
 }
 
 const Settings: NextPage = () => {
@@ -108,97 +108,133 @@ const Settings: NextPage = () => {
         </title>
         <meta name="description" content="NextJS + React + Vercel + Ory" />
       </Head>
-      Profile Management and Security Settings
-      <SettingsCard only="profile" flow={flow}>
-        <h3>Profile Settings</h3>
-        <Messages messages={flow?.ui.messages} />
-        <Flow
-          hideGlobalMessages
-          onSubmit={onSubmit}
-          only="profile"
-          flow={flow}
-        />
-      </SettingsCard>
-      <SettingsCard only="password" flow={flow}>
-        <h3>Change Password</h3>
+      <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div className="sm:mx-auto sm:w-full sm:max-w-md">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Profile & Security Settings
+          </h2>
 
-        <Messages messages={flow?.ui.messages} />
-        <Flow
-          hideGlobalMessages
-          onSubmit={onSubmit}
-          only="password"
-          flow={flow}
-        />
-      </SettingsCard>
-      <SettingsCard only="oidc" flow={flow}>
-        <h3>Manage Social Sign In</h3>
+          <SettingsCard only="profile" flow={flow}>
+            <h3 className="mb-3 text-xl font-bold text-gray-900">
+              Profile Settings
+            </h3>
+            <Messages messages={flow?.ui.messages} />
+            <Flow
+              hideGlobalMessages
+              onSubmit={onSubmit}
+              only="profile"
+              flow={flow}
+            />
+          </SettingsCard>
+          <SettingsCard only="password" flow={flow}>
+            <h3 className="mb-3 text-xl font-bold text-gray-900">
+              Change Password
+            </h3>
 
-        <Messages messages={flow?.ui.messages} />
-        <Flow hideGlobalMessages onSubmit={onSubmit} only="oidc" flow={flow} />
-      </SettingsCard>
-      <SettingsCard only="lookup_secret" flow={flow}>
-        <h3>Manage 2FA Backup Recovery Codes</h3>
-        <Messages messages={flow?.ui.messages} />
-        <p>
-          Recovery codes can be used in panic situations where you have lost
-          access to your 2FA device.
-        </p>
+            <Messages messages={flow?.ui.messages} />
+            <Flow
+              hideGlobalMessages
+              onSubmit={onSubmit}
+              only="password"
+              flow={flow}
+            />
+          </SettingsCard>
+          <SettingsCard only="oidc" flow={flow}>
+            <h3 className="mb-3 text-xl font-bold text-gray-900">
+              Manage Social Sign In
+            </h3>
 
-        <Flow
-          hideGlobalMessages
-          onSubmit={onSubmit}
-          only="lookup_secret"
-          flow={flow}
-        />
-      </SettingsCard>
-      <SettingsCard only="totp" flow={flow}>
-        <h3>Manage 2FA TOTP Authenticator App</h3>
-        <p>
-          Add a TOTP Authenticator App to your account to improve your account
-          security. Popular Authenticator Apps are{' '}
-          <a href="https://www.lastpass.com" rel="noreferrer" target="_blank">
-            LastPass
-          </a>{' '}
-          and Google Authenticator (
-          <a
-            href="https://apps.apple.com/us/app/google-authenticator/id388497605"
-            target="_blank"
-            rel="noreferrer"
-          >
-            iOS
-          </a>
-          ,{' '}
-          <a
-            href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en&gl=US"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Android
-          </a>
-          ).
-        </p>
-        <Messages messages={flow?.ui.messages} />
-        <Flow hideGlobalMessages onSubmit={onSubmit} only="totp" flow={flow} />
-      </SettingsCard>
-      <SettingsCard only="webauthn" flow={flow}>
-        <h3>Manage Hardware Tokens and Biometrics</h3>
-        <Messages messages={flow?.ui.messages} />
-        <p>
-          Use Hardware Tokens (e.g. YubiKey) or Biometrics (e.g. FaceID,
-          TouchID) to enhance your account security.
-        </p>
-        <Flow
-          hideGlobalMessages
-          onSubmit={onSubmit}
-          only="webauthn"
-          flow={flow}
-        />
-      </SettingsCard>
-      <Card>
-        <Link href="/" passHref>
-          Go back
-        </Link>
-      </Card>
+            <Messages messages={flow?.ui.messages} />
+            <Flow
+              hideGlobalMessages
+              onSubmit={onSubmit}
+              only="oidc"
+              flow={flow}
+            />
+          </SettingsCard>
+          <SettingsCard only="lookup_secret" flow={flow}>
+            <h3 className="mb-3 text-xl font-bold text-gray-900">
+              Manage 2FA Backup Recovery Codes
+            </h3>
+            <Messages messages={flow?.ui.messages} />
+            <p>
+              Recovery codes can be used in panic situations where you have lost
+              access to your 2FA device.
+            </p>
+
+            <Flow
+              hideGlobalMessages
+              onSubmit={onSubmit}
+              only="lookup_secret"
+              flow={flow}
+            />
+          </SettingsCard>
+          <SettingsCard only="totp" flow={flow}>
+            <h3 className="mb-3 text-xl font-bold text-gray-900">
+              Manage 2FA TOTP Authenticator App
+            </h3>
+            <p className='mb-4'>
+              Add a TOTP Authenticator App to your account to improve your
+              account security. Popular Authenticator Apps are{' '}
+              <a
+                className="text-gray-600 underline"
+                href="https://www.lastpass.com"
+                rel="noreferrer"
+                target="_blank"
+              >
+                LastPass
+              </a>{' '}
+              and Google Authenticator (
+              <a
+                className="text-gray-600 underline"
+                href="https://apps.apple.com/us/app/google-authenticator/id388497605"
+                target="_blank"
+                rel="noreferrer"
+              >
+                iOS
+              </a>
+              ,{' '}
+              <a
+                className="text-gray-600 underline"
+                href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en&gl=US"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Android
+              </a>
+              ).
+            </p>
+            <Messages messages={flow?.ui.messages} />
+            <Flow
+              hideGlobalMessages
+              onSubmit={onSubmit}
+              only="totp"
+              flow={flow}
+            />
+          </SettingsCard>
+          <SettingsCard only="webauthn" flow={flow}>
+            <h3 className="mb-3 text-xl font-bold text-gray-900">
+              Manage Hardware Tokens and Biometrics
+            </h3>
+            <Messages messages={flow?.ui.messages} />
+            <p>
+              Use Hardware Tokens (e.g. YubiKey) or Biometrics (e.g. FaceID,
+              TouchID) to enhance your account security.
+            </p>
+            <Flow
+              hideGlobalMessages
+              onSubmit={onSubmit}
+              only="webauthn"
+              flow={flow}
+            />
+          </SettingsCard>
+          <Card className="m-4 p-4">
+            <Link href="/" passHref>
+              <a className="text-gray-600 underline">Go back</a>
+            </Link>
+          </Card>
+        </div>
+      </div>
     </>
   );
 };

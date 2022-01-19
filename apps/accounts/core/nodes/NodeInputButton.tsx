@@ -1,15 +1,13 @@
-import { getNodeLabel } from '@ory/integrations/ui'
-import { UiNode, UiNodeInputAttributes } from '@ory/kratos-client'
-import { Button, Checkbox, TextInput } from '@ory/themes'
-
-import { FormDispatcher, NodeInputProps, ValueSetter } from './helpers'
+import { getNodeLabel } from '@ory/integrations/ui';
+import { Button } from '@rocketshop-monorepo/ui';
+import { NodeInputProps } from './helpers';
 
 export function NodeInputButton<T>({
   node,
   attributes,
   setValue,
   disabled,
-  dispatchSubmit
+  dispatchSubmit,
 }: NodeInputProps) {
   // Some attributes have dynamic JavaScript - this is for example required for WebAuthn.
   const onClick = () => {
@@ -17,18 +15,18 @@ export function NodeInputButton<T>({
     // and the functions are available on the global window level. Unfortunately, there
     // is currently no better way than executing eval / function here at this moment.
     if (attributes.onclick) {
-      const run = new Function(attributes.onclick)
-      run()
+      const run = new Function(attributes.onclick);
+      run();
     }
-  }
+  };
 
   return (
     <>
       <Button
         name={attributes.name}
         onClick={(e) => {
-          onClick()
-          setValue(attributes.value).then(() => dispatchSubmit(e))
+          onClick();
+          setValue(attributes.value).then(() => dispatchSubmit(e));
         }}
         value={attributes.value || ''}
         disabled={attributes.disabled || disabled}
@@ -36,5 +34,5 @@ export function NodeInputButton<T>({
         {getNodeLabel(node)}
       </Button>
     </>
-  )
+  );
 }

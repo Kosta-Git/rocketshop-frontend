@@ -1,7 +1,11 @@
-import { Column, usePagination, useSortBy, useTable } from "react-table";
-import { RiSortAsc, RiSortDesc } from "react-icons/ri";
-import { useEffect } from "react";
+import { Column, usePagination, useSortBy, useTable } from 'react-table';
+import {
+  SortAscendingIcon,
+  SortDescendingIcon,
+} from '@heroicons/react/outline';
+import { useEffect } from 'react';
 import { TableControls } from './table-controls';
+import classNames from 'classnames';
 
 interface TableProps<T extends object> {
   data: T[];
@@ -17,7 +21,7 @@ export function Table<T extends object>(props: TableProps<T>) {
   const {
     data,
     columns,
-    className = "",
+    className = '',
     loading,
     fetchData,
     pageCount,
@@ -50,27 +54,52 @@ export function Table<T extends object>(props: TableProps<T>) {
     usePagination
   ) as any;
 
+  const tableClass = classNames(
+    'bg-white border-collapse border-0 table-auto'.split(' '),
+    className.split(' ')
+  );
+
+  const tableHeadClass = classNames('bg-gray-50');
+
+  const tableHeadCellClass = classNames(
+    'px-6 py-2 text-xs text-gray-500 border'.split(' ')
+  );
+
+  const tableCellClass = classNames(
+    'px-6 py-4 text-sm text-gray-500 border'.split(' ')
+  );
+
+  const tableBodyClass = classNames(
+    'bg-white divide-y divide-gray-300'.split(' ')
+  );
+
+  const tableRowClass = classNames();
+
+  const tableControlsClass = classNames(
+    'px-6 py-4 text-gray-500 border'.split(' ')
+  );
+
   useEffect(() => {
     fetchData(pageIndex, pageSize);
   }, [pageIndex, pageSize]);
 
   return (
-    <table className={`table ${className}`.trim()} {...getTableProps()}>
-      <thead className="table-head">
+    <table className={tableClass} {...getTableProps()}>
+      <thead className={tableHeadClass}>
         {headerGroups.map((headerGroup: any) => (
-          <tr className="table-row" {...headerGroup.getHeaderGroupProps()}>
+          <tr className={tableRowClass} {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column: any) => (
               <th
-                className="table-head-cell"
+                className={tableHeadCellClass}
                 {...column.getHeaderProps(column.getSortByToggleProps())}
               >
                 <span>
-                  {column.render("Header")}
+                  {column.render('Header')}
                   {column.isSorted &&
                     (column.isSortedDesc ? (
-                      <RiSortDesc className="inline ml-2 w-4 h-4" />
+                      <SortDescendingIcon className="inline ml-2 w-4 h-4" />
                     ) : (
-                      <RiSortAsc className="inline ml-2 w-4 h-4" />
+                      <SortAscendingIcon className="inline ml-2 w-4 h-4" />
                     ))}
                 </span>
               </th>
@@ -78,29 +107,29 @@ export function Table<T extends object>(props: TableProps<T>) {
           </tr>
         ))}
       </thead>
-      <tbody className="table-body" {...getTableBodyProps()}>
+      <tbody className={tableBodyClass} {...getTableBodyProps()}>
         {page.map((row: any) => {
           prepareRow(row);
 
           return (
-            <tr className="table-row" {...row.getRowProps()}>
+            <tr className={tableRowClass} {...row.getRowProps()}>
               {row.cells.map((cell: any) => (
-                <td className="table-cell" {...cell.getCellProps()}>
-                  {cell.render("Cell")}
+                <td className={tableCellClass} {...cell.getCellProps()}>
+                  {cell.render('Cell')}
                 </td>
               ))}
             </tr>
           );
         })}
-        <tr className="table-row">
+        <tr className={tableRowClass}>
           {loading && (
-            <td className="table-cell" colSpan={500}>
+            <td className={tableCellClass} colSpan={500}>
               Loading...
             </td>
           )}
 
           {!loading && (
-            <td className="table-controls" colSpan={500}>
+            <td className={tableControlsClass} colSpan={500}>
               <div className="flex flex-wrap justify-between">
                 <div>
                   Showing {page.length} of {totalRows} results

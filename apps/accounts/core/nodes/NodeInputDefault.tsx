@@ -1,14 +1,8 @@
-import { getNodeLabel } from '@ory/integrations/ui'
-import { Button, TextInput } from '@ory/themes'
-
-import { NodeInputButton } from './NodeInputButton'
-import { NodeInputCheckbox } from './NodeInputCheckbox'
-import { NodeInputHidden } from './NodeInputHidden'
-import { NodeInputSubmit } from './NodeInputSubmit'
-import { NodeInputProps } from './helpers'
+import { InputField } from '@rocketshop-monorepo/ui';
+import { NodeInputProps } from './helpers';
 
 export function NodeInputDefault<T>(props: NodeInputProps) {
-  const { node, attributes, value = '', setValue, disabled } = props
+  const { node, attributes, value = '', setValue, disabled } = props;
 
   // Some attributes have dynamic JavaScript - this is for example required for WebAuthn.
   const onClick = () => {
@@ -16,36 +10,38 @@ export function NodeInputDefault<T>(props: NodeInputProps) {
     // and the functions are available on the global window level. Unfortunately, there
     // is currently no better way than executing eval / function here at this moment.
     if (attributes.onclick) {
-      const run = new Function(attributes.onclick)
-      run()
+      const run = new Function(attributes.onclick);
+      run();
     }
-  }
+  };
+
+  // Only keep unique ids
+  const messages = [
+    ...node.messages
+      .reduce((a, c) => {
+        a.set(c.id, c);
+        return a;
+      }, new Map())
+      .values(),
+  ];
 
   // Render a generic text input field.
   return (
-    <TextInput
-      title={node.meta.label?.text}
+    <InputField
+      label={node.meta.label?.text}
       onClick={onClick}
       onChange={(e) => {
-        setValue(e.target.value)
+        setValue(e.target.value);
       }}
       type={attributes.type}
       name={attributes.name}
       value={value}
       disabled={attributes.disabled || disabled}
-      help={node.messages.length > 0}
+      help={messages.length > 0}
       state={
-        node.messages.find(({ type }) => type === 'error') ? 'error' : undefined
+        messages.find(({ type }) => type === 'error') ? 'error' : undefined
       }
-      subtitle={
-        <>
-          {node.messages.map(({ text, id }, k) => (
-            <span key={`${id}-${k}`} data-testid={`ui/message/${id}`}>
-              {text}
-            </span>
-          ))}
-        </>
-      }
+      helpers={messages.map(({ text, id }, k) => text)}
     />
-  )
+  );
 }

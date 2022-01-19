@@ -101,37 +101,60 @@ const Login: NextPage = () => {
         <title>Sign in - Ory NextJS Integration Example</title>
         <meta name="description" content="NextJS + React + Vercel + Ory" />
       </Head>
-      <Card>
-        {(() => {
-          if (flow?.refresh) {
-            return 'Confirm Action';
-          } else if (flow?.requested_aal === 'aal2') {
-            return 'Two-Factor Authentication';
-          }
-          return 'Sign In';
-        })()}
-        <Flow onSubmit={onSubmit} flow={flow} />
-      </Card>
-      {aal || refresh ? (
-        <Card>
-          <Button data-testid="logout-link" onClick={() => onLogout()}>
-            Log out
-          </Button>
-        </Card>
-      ) : (
-        <>
-          <Card>
-            <Link href="/registration" passHref>
-              Create account
-            </Link>
-          </Card>
-          <Card>
-            <Link href="/recovery" passHref>
-              Recover your account
-            </Link>
-          </Card>
-        </>
-      )}
+      <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div className="sm:mx-auto sm:w-full sm:max-w-md">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Sign in to your account
+          </h2>
+          {aal || refresh ? (
+            <></>
+          ) : (
+            <p className="mt-2 text-center text-gray-600">
+              Or{' '}
+              <Link href="/registration" passHref>
+                <a className="underline">create one!</a>
+              </Link>
+            </p>
+          )}
+        </div>
+
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            <div className="mb-2">
+              <h2 className="text-left text-xl font-bold text-gray-800">
+                {(() => {
+                  if (flow?.refresh) {
+                    return 'Confirm Action';
+                  } else if (flow?.requested_aal === 'aal2') {
+                    return 'Two-Factor Authentication';
+                  }
+                  return 'Authenticate';
+                })()}
+              </h2>
+            </div>
+            <div>
+              <Flow onSubmit={onSubmit} flow={flow} />
+            </div>
+            <div className="mt-4">
+              {aal || refresh ? (
+                <div>
+                  <Button data-testid="logout-link" onClick={() => onLogout()}>
+                    Log out
+                  </Button>
+                </div>
+              ) : (
+                <>
+                  <a className="text-gray-600 underline">
+                    <Link href="/recovery" passHref>
+                      Recover your account
+                    </Link>
+                  </a>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

@@ -1,7 +1,8 @@
-import OrdersTable from "../components/orders/orders-table";
-import { useOrdersQuery } from "../features/api/api-slice";
-import { emptyPage } from "../models/abstractions/page";
-import { Order } from "../models/queries/order";
+import { PageContent } from '@rocketshop-monorepo/ui';
+import OrdersTable from '../components/orders/orders-table';
+import { useOrdersQuery } from '../features/api/api-slice';
+import { emptyPage } from '../models/abstractions/page';
+import { Order } from '../models/queries/order';
 
 const Orders = () => {
   const { data = emptyPage<Order>() } = useOrdersQuery({
@@ -10,9 +11,9 @@ const Orders = () => {
   });
 
   return (
-    <div className="p-12">
+    <PageContent title={'Orders'}>
       <OrdersTable />
-    </div>
+    </PageContent>
   );
 };
 

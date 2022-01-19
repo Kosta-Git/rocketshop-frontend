@@ -1,5 +1,5 @@
+import React from "react";
 import { Button } from "../button/button";
-import { OptionInput } from "../forms/option-input";
 import { SelectInput } from "../forms/select-input";
 
 interface TableControlProps {
@@ -54,9 +54,9 @@ export const TableControls = (props: TableControlProps) => {
         className="ml-2"
       >
         {[5, 10, 20, 30, 40, 50].map((pageSize) => (
-          <OptionInput key={pageSize} value={pageSize}>
+          <option key={pageSize} value={pageSize}>
             Show {pageSize}
-          </OptionInput>
+          </option>
         ))}
       </SelectInput>
     </>

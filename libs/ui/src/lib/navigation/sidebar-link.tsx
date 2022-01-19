@@ -1,15 +1,14 @@
-import { IconType } from 'react-icons';
 import Link from 'next/link';
 
 interface SidebarLinkProps {
   text: string;
-  icon: IconType;
+  icon: any;
   link: string;
 }
 
 export const SidebarLink = (props: SidebarLinkProps) => {
   return (
-    <li className="text-gray-400 hover:text-white relative hover:bg-gray-800 rounded">
+    <div className="text-gray-400 hover:text-white relative hover:bg-gray-800 rounded">
       <Link href={props.link}>
         {/*eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a>
@@ -21,6 +20,6 @@ export const SidebarLink = (props: SidebarLinkProps) => {
           </span>
         </a>
       </Link>
-    </li>
+    </div>
   );
 };

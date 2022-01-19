@@ -86,19 +86,31 @@ const Registration: NextPage = () => {
 
   return (
     <>
-     <Head>
+      <Head>
         <title>Create account - Ory NextJS Integration Example</title>
         <meta name="description" content="NextJS + React + Vercel + Ory" />
       </Head>
-      <Card>
-        <h2>Create account</h2>
-        <Flow onSubmit={onSubmit} flow={flow} />
-      </Card>
-      <Card>
-        <Link data-testid="cta-link" href="/login">
-          Sign in
-        </Link>
-      </Card>
+
+      <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div className="sm:mx-auto sm:w-full sm:max-w-md">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Create account
+          </h2>
+        </div>
+
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            <div>
+              <Flow onSubmit={onSubmit} flow={flow} />
+            </div>
+            <div className="mt-4">
+              <Link data-testid="cta-link" href="/login">
+                <a className="text-gray-600 underline">Sign in</a>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
