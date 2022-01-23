@@ -100,9 +100,7 @@ export const Sidebar = (props: PropsWithChildren<SidebarProps>) => {
             <MenuIcon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <main className="flex-1">
-          {props.children}
-        </main>
+        <main className="flex-1">{props.children}</main>
       </div>
     </div>
   );

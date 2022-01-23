@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { ChangeEventHandler, PropsWithChildren } from 'react';
 
-interface SelectInputProps {
+export interface SelectInputProps {
   value: string | ReadonlyArray<string> | number | undefined;
   onChange?: ChangeEventHandler<HTMLSelectElement>;
   className?: string;

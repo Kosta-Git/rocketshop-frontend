@@ -53,9 +53,9 @@ export const TableControls = (props: TableControlProps) => {
         onChange={(e) => setPageSize(Number(e.target.value))}
         className="ml-2"
       >
-        {[5, 10, 20, 30, 40, 50].map((pageSize) => (
-          <option key={pageSize} value={pageSize}>
-            Show {pageSize}
+        {[5, 10, 20, 30, 40, 50].map((ps) => (
+          <option key={ps} value={ps}>
+            Show {ps}
           </option>
         ))}
       </SelectInput>

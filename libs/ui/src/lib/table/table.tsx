@@ -55,29 +55,22 @@ export function Table<T extends object>(props: TableProps<T>) {
   ) as any;
 
   const tableClass = classNames(
-    'bg-white border-collapse border-0 table-auto'.split(' '),
+    'min-w-full divide-y divide-gray-200',
     className.split(' ')
   );
 
-  const tableHeadClass = classNames('bg-gray-50');
+  const tableHeadClass = 'bg-gray-50';
 
-  const tableHeadCellClass = classNames(
-    'px-6 py-2 text-xs text-gray-500 border'.split(' ')
-  );
+  const tableHeadCellClass =
+    'px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider';
 
-  const tableCellClass = classNames(
-    'px-6 py-4 text-sm text-gray-500 border'.split(' ')
-  );
+  const tableCellClass = 'px-6 py-4 text-sm text-gray-500 border';
 
-  const tableBodyClass = classNames(
-    'bg-white divide-y divide-gray-300'.split(' ')
-  );
+  const tableBodyClass = 'bg-white divide-y divide-gray-200';
 
-  const tableRowClass = classNames();
+  const tableRowClass = '';
 
-  const tableControlsClass = classNames(
-    'px-6 py-4 text-gray-500 border'.split(' ')
-  );
+  const tableControlsClass = 'px-6 py-4 text-gray-500 border';
 
   useEffect(() => {
     fetchData(pageIndex, pageSize);

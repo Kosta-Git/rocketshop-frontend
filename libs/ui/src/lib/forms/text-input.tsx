@@ -1,9 +1,7 @@
-import ExclamationCircleIcon from '@heroicons/react/outline/ExclamationCircleIcon';
 import classNames from 'classnames';
 import { ReactNode } from 'react';
-import { bool } from 'yup';
 
-interface InputFieldProps {
+export interface InputFieldProps {
   name: string;
   type?: string;
   label: string;
@@ -104,9 +102,7 @@ export const InputField = (props: InputFieldProps) => {
         )} */}
       </div>
       {helpers && helpers?.length > 0 && (
-        <div className={helperClasses} >
-          {helpers.map(h => h)}
-        </div>
+        <div className={helperClasses}>{helpers.map((h) => h)}</div>
       )}
       {subtitle}
     </div>

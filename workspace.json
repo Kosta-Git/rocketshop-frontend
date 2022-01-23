@@ -5,6 +5,7 @@
     "accounts-e2e": "apps/accounts-e2e",
     "shop": "apps/shop",
     "shop-e2e": "apps/shop-e2e",
-    "ui": "libs/ui"
+    "ui": "libs/ui",
+    "ui-e2e": "apps/ui-e2e"
   }
 }

@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import CreateValidationRule from '../../models/mutations/create-validation-rule';
 import { useValidationRuleCreateMutation } from '../../features/api/api-slice';
-import { Button, InputField } from '@rocketshop-monorepo/ui';
+import { Button, InputField, ToggleInput } from '@rocketshop-monorepo/ui';
 
 const CreateValidationRuleSchema = Yup.object().shape({
   start: Yup.number()
@@ -45,7 +45,7 @@ const CreateValidationRuleForm = () => {
             ? 'error'
             : 'success'
         }
-        helper={formik.touched.start && formik.errors.start}
+        helpers={formik.touched.start && [formik.errors.start]}
         value={formik.values.start}
         name={'start'}
         label="Start value"
@@ -54,11 +54,9 @@ const CreateValidationRuleForm = () => {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         state={
-          formik.touched.end && Boolean(formik.errors.end)
-            ? 'error'
-            : 'success'
+          formik.touched.end && Boolean(formik.errors.end) ? 'error' : 'success'
         }
-        helper={formik.touched.end && formik.errors.end}
+        helpers={formik.touched.end && [formik.errors.end]}
         value={formik.values.end}
         name={'end'}
         label="End value"
@@ -71,14 +69,24 @@ const CreateValidationRuleForm = () => {
             ? 'error'
             : 'success'
         }
-        helper={formik.touched.confirmations && formik.errors.confirmations}
+        helpers={formik.touched.confirmations && [formik.errors.confirmations]}
         value={formik.values.confirmations}
         name={'confirmations'}
         label="Confirmations"
       />
+      <div className='mt-2'>
+        <ToggleInput
+          name={'enabled'}
+          enabled={formik.values.enabled}
+          onChange={(c) => formik.setFieldValue('enabled', c)}
+        >
+          Enabled
+        </ToggleInput>
+      </div>
+
       <Button
         className="mt-2 w-full"
-        disabled={!formik.isValid && formik.isSubmitting}
+        disabled={!formik.isValid || formik.isSubmitting}
         type="submit"
       >
         Create

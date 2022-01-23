@@ -2,14 +2,15 @@ import { PropsWithChildren } from 'react';
 import { Switch } from '@headlessui/react';
 import classNames from 'classnames';
 
-interface ToggleInputProps {
+export interface ToggleInputProps {
+  name: string;
   enabled: boolean;
   labelPosition?: 'left' | 'right';
   onChange: (checked: boolean) => void;
 }
 
 export const ToggleInput = (props: PropsWithChildren<ToggleInputProps>) => {
-  const { enabled, onChange, labelPosition = 'left' } = props;
+  const { name, enabled, onChange, labelPosition = 'left' } = props;
   const hasLabel = props.children;
 
   return (
@@ -20,6 +21,8 @@ export const ToggleInput = (props: PropsWithChildren<ToggleInputProps>) => {
         </Switch.Label>
       )}
       <Switch
+        name={name}
+        type={"button"}
         checked={enabled}
         onChange={onChange}
         className={classNames(

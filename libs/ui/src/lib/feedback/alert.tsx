@@ -6,7 +6,7 @@ import {
 } from '@heroicons/react/solid';
 import classNames from 'classnames';
 
-interface AlertProps {
+export interface AlertProps {
   title: string;
   content: string;
   status: 'error' | 'warning' | 'success' | 'info';

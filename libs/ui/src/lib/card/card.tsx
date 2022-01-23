@@ -1,6 +1,6 @@
 import React from "react";
 
-interface CardProps {
+export interface CardProps {
   className?: string;
 }
 
