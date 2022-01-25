@@ -2,15 +2,12 @@ import { Story, Meta } from '@storybook/react';
 import { Notification } from './notification';
 
 export default {
-  component: Alert,
-  title: 'Alert',
+  component: Notification,
+  title: 'Notification',
 } as Meta;
 
-const Template: Story<AlertProps> = (args) => <Alert {...args}/>;
+const Template: Story = (args) => <Notification {...args}/>;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  title: "Alert title",
-  content: "Alert content",
-  status: 'info'
 };

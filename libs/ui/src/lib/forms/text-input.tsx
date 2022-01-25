@@ -1,3 +1,4 @@
+import { ExclamationCircleIcon } from '@heroicons/react/solid';
 import classNames from 'classnames';
 import { ReactNode } from 'react';
 
@@ -65,8 +66,6 @@ export const InputField = (props: InputFieldProps) => {
     }
   );
 
-  const descriptorId = name + '-descriptor-' + value;
-
   return (
     <div className={className}>
       <div>
@@ -91,15 +90,14 @@ export const InputField = (props: InputFieldProps) => {
           disabled={disabled}
           className={inputClasses}
         />
-        {/* {state === 'error' && (
+        {state === 'error' && (
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
             <ExclamationCircleIcon
-              key={"test"}
               className="h-5 w-5 text-red-500"
               aria-hidden="true"
             />
           </div>
-        )} */}
+        )}
       </div>
       {helpers && helpers?.length > 0 && (
         <div className={helperClasses}>{helpers.map((h) => h)}</div>
