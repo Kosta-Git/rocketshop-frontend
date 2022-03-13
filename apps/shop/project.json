@@ -19,7 +19,8 @@
       "executor": "@nrwl/next:server",
       "options": {
         "buildTarget": "shop:build",
-        "dev": true
+        "dev": true,
+        "port": 4300
       },
       "configurations": {
         "production": {

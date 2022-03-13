@@ -7,6 +7,7 @@ import {
   ValidationRuleQuery,
 } from "../../models/queries/validation-rule";
 import Coin from "../../models/queries/coin";
+import CreateOrder from "apps/shop/models/mutations/create-order";
 
 export const apiSlice = createApi({
   reducerPath: "api",
@@ -37,6 +38,17 @@ export const apiSlice = createApi({
         }),
         providesTags: (_, __, query) => [{ type: "Order", query }],
       }),
+      orderCreate: builder.mutation<
+        Order,
+        CreateOrder
+      >({
+        query: (order: CreateOrder) => ({
+          url: "/Order",
+          method: "POST",
+          body: order,
+        }),
+        invalidatesTags: ["Order"],
+      }),
 
       // Validation rules
       validationRules: builder.query<Page<ValidationRule>, ValidationRuleQuery>(
@@ -66,6 +78,7 @@ export const apiSlice = createApi({
 export const {
   useCoinsQuery,
   useOrdersQuery,
+  useOrderCreateMutation,
   useValidationRulesQuery,
   useValidationRuleCreateMutation,
 } = apiSlice;

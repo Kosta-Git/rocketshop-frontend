@@ -36,7 +36,7 @@ const OrdersTable = () => {
       },
       {
         Header: "Coin",
-        accessor: (r) => r.coin.name,
+        accessor: "coin",
       },
       {
         Header: "Status",

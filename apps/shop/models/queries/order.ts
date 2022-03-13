@@ -7,7 +7,7 @@ export interface Order {
   walletAddress: string;
   network: string;
   amount: number;
-  coin: any; // TODO: create class
+  coin: string;
   status: any; // TODO: create enum
   validationRule: ValidationRule;
   validations: any[]; // TODO: create class

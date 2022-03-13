@@ -10,7 +10,7 @@ export function Index() {
         enabled={enabled}
         onChange={(checked) => setEnabled(checked)}
         labelPosition="right"
-      >
+        name={''}>
         <span className="text-sm font-medium text-gray-900">
           This is a test{' '}
         </span>

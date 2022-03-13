@@ -15,7 +15,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>RocketShop</title>
+        <title>Shop</title>
       </Head>
       <Sidebar
         links={[
