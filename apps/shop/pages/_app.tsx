@@ -5,13 +5,19 @@ import {
   KeyIcon,
   ReceiptTaxIcon,
   CogIcon,
+  LogoutIcon,
 } from '@heroicons/react/outline';
 import Head from 'next/head';
 import { Provider } from 'react-redux';
 import { store } from './../redux/store';
 import './../styles/styles.css';
+import { useSession } from '../hooks/ory';
 
-function CustomApp({ Component, pageProps }: AppProps) {
+function CustomApp({Component, pageProps}: AppProps) {
+  const { session, logoutUrl } = useSession(process.env.NEXT_PUBLIC_HOST);
+
+  if (!session) return <></>;
+
   return (
     <>
       <Head>
@@ -32,6 +38,12 @@ function CustomApp({ Component, pageProps }: AppProps) {
             link={'/settings'}
             icon={CogIcon}
             text={'Settings'}
+          />,
+          <SidebarLink
+            key={5}
+            link={logoutUrl ?? ''}
+            icon={LogoutIcon}
+            text={'Logout'}
           />,
         ]}
       >

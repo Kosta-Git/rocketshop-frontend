@@ -2,12 +2,12 @@ import { Order, OrderQuery } from "../../models/queries/order";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Page } from "../../models/abstractions/page";
 import CreateValidationRule from "../../models/mutations/create-validation-rule";
+import CreateOrder from "../../models/mutations/create-order";
 import {
   ValidationRule,
   ValidationRuleQuery,
 } from "../../models/queries/validation-rule";
 import Coin from "../../models/queries/coin";
-import CreateOrder from "apps/shop/models/mutations/create-order";
 
 export const apiSlice = createApi({
   reducerPath: "api",
@@ -17,8 +17,9 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.NEXT_PUBLIC_ORDERS_API}/api`,
     prepareHeaders: (headers) => {
-      return headers;
+        return headers;
     },
+    credentials: 'include'
   }),
   endpoints(builder) {
     return {

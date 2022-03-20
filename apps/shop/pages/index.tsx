@@ -1,16 +1,23 @@
 import { Button, PageContent, ToggleInput } from '@rocketshop-monorepo/ui';
 import { useState } from 'react';
+import { useSession } from '../hooks/ory';
 
 export function Index() {
   const [enabled, setEnabled] = useState(false);
+  const { session } = useSession();
 
+  console.log(session)
   return (
     <PageContent title={'Dashboard'}>
+      <p>
+        Hi {session?.identity?.traits?.email?? ""}
+      </p>
       <ToggleInput
         enabled={enabled}
         onChange={(checked) => setEnabled(checked)}
         labelPosition="right"
-        name={''}>
+        name={''}
+      >
         <span className="text-sm font-medium text-gray-900">
           This is a test{' '}
         </span>
